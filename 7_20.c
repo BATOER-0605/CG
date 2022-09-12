@@ -3,31 +3,28 @@
 int main(){
 
     FILE *inputA=fopen("inputA.txt","r");
-    FILE *inputB=fopen("inputA.txt","r");
+    FILE *inputB=fopen("inputB.txt","r");
 
-    float A[5][5];
-    float B[5][5];
+    int i,j,N;
+    float A[5][5],B[5][5];
 
-    int nA,nB,i,j,flag;
+    fscanf(inputA,"%d",&N);
+    fscanf(inputB,"%d",&N);
 
-    if(inputA == NULL || inputB == NULL){
-        return 1;
+    for(i=0;i<N;i++){
+        for(j=0;j<N;j++){
+            fscanf(inputA," %f",&A[i][j]);
+            fscanf(inputB," %f",&B[i][j]);
+        }
     }
 
-    fscanf(inputA,"%d\n",&nA);
-    fscanf(inputB,"%d\n",&nB);
-
-    fscanf(inputA,"%s\n %f %f %f %f %f %f %f %f %f %f",&A[0][0],&A[0][1],&A[1][0],&A[1][1],&A[2][0],&A[2][1],);
-    fscanf(inputB,"%s\n %f %f %f %f",&B[0][0],&B[0][1],&B[1][0],&B[1][1]);
-    
-    printf("%f %f %f %f\n",A[0][0],A[0][1],A[1][0],A[1][1]);
     //A+B
 
     printf("A+B\n");
 
-    for(i=0;i<nA;i++){
+    for(i=0;i<N;i++){
         printf("|\t");
-        for(j=0;j<nA;j++){
+        for(j=0;j<N;j++){
             printf("%f\t",A[i][j]+B[i][j]);
         }
         printf("|\n");
@@ -37,9 +34,9 @@ int main(){
 
     printf("A-B\n");
 
-    for(i=0;i<nA;i++){
+    for(i=0;i<N;i++){
         printf("|\t");
-        for(j=0;j<nA;j++){
+        for(j=0;j<N;j++){
             printf("%f\t",A[i][j]-B[i][j]);
         }
         printf("|\n");
@@ -49,11 +46,14 @@ int main(){
 
     printf("B-A\n");
 
-    for(i=0;i<nA;i++){
+    for(i=0;i<N;i++){
         printf("|\t");
-        for(j=0;j<nA;j++){
+        for(j=0;j<N;j++){
             printf("%f\t",B[i][j]-A[i][j]);
         }
         printf("|\n");
     }
+
+    fclose(inputA);
+    fclose(inputB);
 }
