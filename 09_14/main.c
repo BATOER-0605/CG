@@ -87,4 +87,9 @@ int main(){
     for(i=0;i<3;i++){
         fprintf(output,"%f,%f\n",res[0][i],res[1][i]);
     }
+
+    printf("変換行列\n");
+    printf("%f\t%f\t%f\n",cnv2[0][0],cnv2[0][1],cnv2[0][2]);
+    printf("%f\t%f\t%f\n",cnv2[1][0],cnv2[1][1],cnv2[1][2]);
+    printf("%f\t%f\t%f\n",cnv2[2][0],cnv2[2][1],cnv2[2][2]);
 }
