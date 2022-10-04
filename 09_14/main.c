@@ -9,7 +9,10 @@ int main(){
     int i,j;
 
     //回転角度すぅぅぅぃぃぃぃぃたぁぁぁぁぁの定義
-    float θ = 0;
+    float theeee = 0;
+    printf("回転角度(deg)↓\n");
+    scanf("%f",&theeee);
+    theeee *= 3.14 / 180;
 
     //必要な配列の定義
     float fire1[3][3];
@@ -19,14 +22,12 @@ int main(){
     //三角形の座標情報の定義
     float point[3][3];
     for(i=0;i<3;i++){
-        for(j=0;j<3;j++){
-            if(j==3){
+            if(i==2){
                 point[i][j] = 1;
             }
             else{
-            fscanf(input1,"%f %f",&point[i][j],&point[i][j]);
+            fscanf(input1,"%f %f %f",&point[i][0],&point[i][1],&point[i][2]);
             }
-        }
     }
 
     //同次変換行列3x3の宣言(原点に戻していくｩｩｩｩｩｩｩ!!!!!)
@@ -43,11 +44,11 @@ int main(){
 
     //同次変換行列3x3の宣言(回転ﾝﾝﾝﾝﾝ)
     float cnv2[3][3];
-    cnv2[0][0]=cos(-θ);
-    cnv2[0][1]=-sin(-θ);
+    cnv2[0][0]=cos(theeee);
+    cnv2[0][1]=-sin(theeee);
     cnv2[0][2]=0;
-    cnv2[1][0]=sin(-θ);
-    cnv2[1][1]=cos(-θ);
+    cnv2[1][0]=sin(theeee);
+    cnv2[1][1]=cos(theeee);
     cnv2[1][2]=0;
     cnv2[2][0]=0;
     cnv2[2][1]=0;
@@ -65,29 +66,25 @@ int main(){
     cnv3[2][1]=0;
     cnv3[2][2]=1;
 
-
-    //ここから下、計算のアルゴリズムを見直す必要あり
     for(i=0;i<3;i++){
-        for(j=0;j<3;j++){
-            fire1[i][j] = cnv3[i][j]*cnv2[j][i];
-        }
+        fire1[0][i] = cnv1[0][0]*point[0][i] + cnv1[0][1]*point[1][i] + cnv1[0][2]*point[2][i];
+        fire1[1][i] = cnv1[1][0]*point[0][i] + cnv1[1][1]*point[1][i] + cnv1[1][2]*point[2][i];
+        fire1[2][i] = cnv1[2][0]*point[0][i] + cnv1[2][1]*point[1][i] + cnv1[2][2]*point[2][i];
     }
 
     for(i=0;i<3;i++){
-        for(j=0;j<3;j++){
-            fire2[i][j] = fire1[i][j]*cnv1[j][i];
-        }
+        fire2[0][i] = cnv2[0][0]*fire1[0][i] + cnv2[0][1]*fire1[1][i] + cnv2[0][2]*fire1[2][i];
+        fire2[1][i] = cnv2[1][0]*fire1[0][i] + cnv2[1][1]*fire1[1][i] + cnv2[1][2]*fire1[2][i];
+        fire2[2][i] = cnv2[2][0]*fire1[0][i] + cnv2[2][1]*fire1[1][i] + cnv2[2][2]*fire1[2][i];
     }
 
     for(i=0;i<3;i++){
-        for(j=0;j<3;j++){
-            res[i][j] = fire2[i][j]*point[j][i];
-        }
+        res[0][i] = cnv3[0][0]*fire2[0][i] + cnv3[0][1]*fire2[1][i] + cnv3[0][2]*fire2[2][i];
+        res[1][i] = cnv3[1][0]*fire2[0][i] + cnv3[1][1]*fire2[1][i] + cnv3[1][2]*fire2[2][i];
+        res[2][i] = cnv3[2][0]*fire2[0][i] + cnv3[2][1]*fire2[1][i] + cnv3[2][2]*fire2[2][i];
     }
 
     for(i=0;i<3;i++){
-        for(j=0;j<3;j++){
-        fprintf(output,"%f %f\n",res[i][j-1],res[i][j]);
-            }
-        }
+        fprintf(output,"%f,%f\n",res[0][i],res[1][i]);
+    }
 }
