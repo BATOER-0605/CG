@@ -1,20 +1,20 @@
 #include <stdio.h>
 
-void kuso(FILE *in,FILE *out);
+void kuso(FILE *in,FILE *out,float X,float Y,float Z);
 
 int main(){
     FILE *INPUT1 = fopen("input1.txt","r");
     FILE *OUTPUT = fopen("output.csv","w");
 
-    kuso(INPUT1,OUTPUT);
+    float X,Y,Z;
+
+    kuso(INPUT1,OUTPUT,X,Y,Z);
 }
 
-void kuso(FILE *in,FILE *out) {
+void kuso(FILE *in,FILE *out,float X,float Y,float Z) {
     float IN[3][3];
-    float x[3],y[3],z[3];
-    int t=0,tt;
-    int n=0;
-    float *X,*Y,*Z;
+    float t,tt;
+    float n=0;
     int i;
 
     for(i=0;i<3;i++){
@@ -22,18 +22,20 @@ void kuso(FILE *in,FILE *out) {
     }
 
     printf("分割数を入れんかいごらぁぁぁぁぁぁぁぁぁ!!!!!!!!!\n");
-    scanf("%d",&n);
-    tt = n/10;
+    scanf("%f",&n);
+    tt = 1 / n;
+    t=0;
+    printf("ttの値: %f\n",tt);
 
-    i=0;
+    while(t<=1.0){
 
-    for(i=0;i<=n-1;i++){
+        X = (IN[1][0] - IN[0][0]) * t + IN[i][0];
+        Y = (IN[2][1] - IN[1][1]) * t + IN[i][1];
+        Z = (IN[0][2] - IN[2][2]) * t + IN[i][2];
+        printf("%f,%f,%f\n", X, Y,Z);
+        fprintf(out, "%f,%f,%f\n", X, Y,Z);
 
-        *X = (IN[i+1][0] - IN[i][0]) * t + IN[i][0];
-        *Y = (IN[i+1][1] - IN[i][1]) * t + IN[i][1];
-        *Z = (IN[i+1][2] - IN[i][2]) * t + IN[i][2];
-        printf("%f,%f,%f\n", *X, *Y,*Z);
-        fprintf(out, "%f,%f,%f\n", *X, *Y,*Z);
+        t+=tt;
     }
 
     fclose(in);
