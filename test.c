@@ -13,7 +13,7 @@ int main(){
     double rad;
 
     for (i=0;i<3;i++){
-        fscanf(fpin,"%lf %lf",&A[i][0],%A[i][1]);
+        fscanf(fpin,"%lf %lf",&A[i][0],&A[i][1]);
     }
     fclose(fpin);
 
