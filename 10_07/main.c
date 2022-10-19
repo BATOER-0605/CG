@@ -27,16 +27,17 @@ void kuso(FILE *in,FILE *out,float X,float Y,float Z) {
     t=0;
     printf("ttの値: %f\n",tt);
 
-    while(t<=1.0){
 
-        X = (IN[1][0] - IN[0][0]) * t + IN[i][0];
-        Y = (IN[2][1] - IN[1][1]) * t + IN[i][1];
-        Z = (IN[0][2] - IN[2][2]) * t + IN[i][2];
+    for(i=0;i<3;i++){
+        for(t=0;t<1.0;t+=tt){
+        X = (IN[i+1][0] - IN[i][0]) * t + IN[i][0];
+        Y = (IN[i+1][1] - IN[i][1]) * t + IN[i][1];
+        Z = (IN[i+1][2] - IN[i][2]) * t + IN[i][2];
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X, Y,Z);
-
-        t+=tt;
+        }
     }
+    
 
     fclose(in);
     fclose(out);
