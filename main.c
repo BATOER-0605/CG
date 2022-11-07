@@ -1,37 +1,89 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 3
-#define M 2
-#define R 3
+//平行移動する関数やで
+void HKmove(x,y,z);
 
+//拡大縮小移動する関数やで
+void big_small(Sx,Sy,Sz);
 
-int i,j,k,u;
+//X 回転移動の関数やで
+void beyblade_X(rad,x,y,z);
 
-void com_AD(int a1,int a2,int b1,int b2){
-    //printf("行列Aの要素 %d %d\n",a1,a2);
+//Y 回転移動の関数やで
+void beyblade_Y(rad,x,y,z);
 
-    float A[a1][a2];
-    float B[b1][b2];
+//Z 回転移動の関数やで
+void beyblade_Z(rad,x,y,z);
 
-    if (a2!=b1){
-        printf("この行列は計算できません。\n");
-        exit(0);
+//gnuplot呼び出し
+void call_nguplot(path);
+
+int main(){
+
+    FILE *fp1 = fopen("file1.txt","r");
+    FILE *fp2 = fopen("file2.txt","r");
+
+    int mode = 0;
+    float X,Y,Z,rad;
+    float Sx,Sy,Sz;
+
+    fscanf(fp1,"%d",&mode);
+    //拡大縮小時の読み取り
+    if(mode == 1){fscanf(fp1,"(%lf,%lf,%lf)",&Sx,&Sy,&Sz);}
+    //X Y Z 軸回転
+    else if(mode == 2 || mode == 3 || mode == 4){fscanf(fp1,"%lf (%lf,%lf,%lf)",&rad,&X,&Y,&Z);}
+    //平行移動
+    else if(mode == 5){fscanf(fp1,"(%lf,%lf,%lf)",&X,&Y,&Z);}
+    else if(mode == 0){exit(0);}
+
+    char res = system("pwd");
+
+    switch(mode){
+        case 1:
+            //拡大・縮小変換
+            call_nguplot(res);
+            HKmove();
+            call_nguplot(res);
+            big_small();
+            call_nguplot(res);
+            HKmove();
+
+        case 2:
+            //X変換
+            call_nguplot(res);
+            HKmove();
+            call_nguplot(res);
+            beyblade_X();
+            call_nguplot(res);
+            HKmove();
+
+        case 3:
+            //Y変換
+            call_nguplot(res);
+            HKmove();
+            call_nguplot(res);
+            beyblade_Y();
+            call_nguplot(res);
+            HKmove();
+
+        case 4:
+            //Z変換
+            call_nguplot(res);
+            HKmove();
+            call_nguplot(res);
+            beyblade_Z();
+            call_nguplot(res);
+            HKmove();
+
+        case 5:
+            //平行移動
+            call_nguplot(res);
+            HKmove();
+
+        default:
+            printf("隠しコマンド発動！！！\n");
+
     }
-
-    else{
-        float AB[a1][b2];
-
-        for(i=0;i<N;i++){
-            for(j=0;j<M;j++){
-                for(u=0;u<M;u++){
-                    for(k=0;k<R;k++){
-                        AB[i][u]+=A[i][j]*B[j][k];
-                        }
-                    }
-                
-                }
-            }
-    }
-
+    return 0;
 }
