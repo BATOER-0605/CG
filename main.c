@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 //平行移動する関数やで
-void HKmove(x,y,z);
+void HKmove(Lx,Ly,Lz,x,y,z);
 
 //拡大縮小移動する関数やで
 void big_small(Sx,Sy,Sz);
@@ -27,6 +28,7 @@ int main(){
     int mode = 0;
     float X,Y,Z,rad;
     float Sx,Sy,Sz;
+    float T[4][4];
 
     fscanf(fp1,"%d",&mode);
     //拡大縮小時の読み取り
@@ -86,4 +88,158 @@ int main(){
 
     }
     return 0;
+}
+
+void HKmove(Lx,Ly,Lz,x,y,z){
+    float T[4][4];
+    float result[3][1];
+
+    for(int i=0;i<4;i++){
+        for(int j=0;i<4;j++){
+            if(i==0 || j==0){
+                T[i][j] = 1;
+            }
+            else if(i==1 || j==1){
+                T[i][j] = 1;
+            }
+            else if(i==2 || j==2){
+                T[i][j] = 1;
+            }
+            else if(i==3 && j==3){
+                T[i][j] = 1;
+            }
+
+            else if(i==0 || j==3){
+                T[i][j] = x;
+            }
+            else if(i==1 || j==3){
+                T[i][j] = y;
+            }
+            else if(i==2 || j==3){
+                T[i][j] = z;
+            }
+            else{T[i][j] = 0;}
+        }
+    }
+
+    result[0][0] = T[0][0] * T[1][1] * x + T[0][0] * T[1][2] * y + T[0][0] * T[1][3] * z; //これを脳筋で解く。図はGoodNotes参照
+}
+
+void big_small(Sx,Sy,Sz){
+    float T[4][4];
+
+    for(int i=0;i<4;i++){
+        for(int j=0;i<4;j++){
+            if(i==0 || j==0){
+                T[i][j] = Sx;
+            }
+            else if(i==1 || j==1){
+                T[i][j] = Sy;
+            }
+            else if(i==2 || j==2){
+                T[i][j] = Sz;
+            }
+            else if(i==3 && j==3){
+                T[i][j] = 1;
+            }
+
+            else{T[i][j] = 0;}
+        }
+    }
+}
+
+void beyblade_X(rad,x,y,z){
+    float T[4][4];
+    rad *= 3.14 / 180;
+
+    for(int i=0;i<4;i++){
+        for(int j=0;i<4;j++){
+            if(i==0 || j==0){
+                T[i][j] = cos(rad);
+            }
+            else if(i==0 || j==1){
+                T[i][j] = -sin(rad);
+            }
+            else if(i==1 || j==0){
+                T[i][j] = sin(rad);
+            }
+            else if(i==1 || j==1 ){
+                T[i][j] = cos(rad);
+            }
+            else if(i==2 || j==2){
+                T[i][j] = 1;
+            }
+            else if(i==3 || j==3){
+                T[i][j] = 1;
+            }
+
+            T[i][j] = 0;
+        }
+
+    }
+
+}
+
+void beyblade_Y(rad,x,y,z){
+    float T[4][4];
+    rad *= 3.14 / 180;
+
+    for(int i=0;i<4;i++){
+        for(int j=0;i<4;j++){
+            if(i==1 || j==1){
+                T[i][j] = cos(rad);
+            }
+            else if(i==1 || j==2){
+                T[i][j] = -sin(rad);
+            }
+            else if(i==2 || j==1){
+                T[i][j] = sin(rad);
+            }
+            else if(i==2 || j==2 ){
+                T[i][j] = cos(rad);
+            }
+            else if(i==0 || j==0){
+                T[i][j] = 1;
+            }
+            else if(i==3 || j==3){
+                T[i][j] = 1;
+            }
+
+            T[i][j] = 0;
+        }
+
+    }
+
+}
+
+void beyblade_Z(rad,x,y,z){
+    float T[4][4];
+    rad *= 3.14 / 180;
+
+    for(int i=0;i<4;i++){
+        for(int j=0;i<4;j++){
+            if(i==0 || j==0){
+                T[i][j] = cos(rad);
+            }
+            else if(i==2 || j==0){
+                T[i][j] = -sin(rad);
+            }
+            else if(i==0 || j==2){
+                T[i][j] = sin(rad);
+            }
+            else if(i==2 || j==2 ){
+                T[i][j] = cos(rad);
+            }
+            else if(i==1 || j==1){
+                T[i][j] = 1;
+            }
+            else if(i==3 || j==3){
+                T[i][j] = 1;
+            }
+
+            T[i][j] = 0;
+        }
+
+    }
+
 }
