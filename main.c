@@ -3,7 +3,7 @@
 #include <math.h>
 
 //平行移動する関数やで
-void HKmove(Lx,Ly,Lz,x,y,z);
+/*void HKmove(float Lx,float Ly,float Lz,float x,float y,float z);
 
 //拡大縮小移動する関数やで
 void big_small(Sx,Sy,Sz);
@@ -18,7 +18,7 @@ void beyblade_Y(rad,x,y,z);
 void beyblade_Z(rad,x,y,z);
 
 //gnuplot呼び出し
-void call_nguplot(path);
+void call_nguplot(path);*/
 
 int main(){
 
@@ -28,24 +28,41 @@ int main(){
     int mode = 0;
     float X,Y,Z,rad;
     float Sx,Sy,Sz;
+    float Lx,Ly,Lz;
     float T[4][4];
+    int n;
+    float x[5],y[5],z[5];
 
     fscanf(fp1,"%d",&mode);
     //拡大縮小時の読み取り
-    if(mode == 1){fscanf(fp1,"(%lf,%lf,%lf)",&Sx,&Sy,&Sz);}
+    if(mode == 1){while(fscanf(fp1,"(%f,%f,%f)",&Sx,&Sy,&Sz) != EOF);}
     //X Y Z 軸回転
-    else if(mode == 2 || mode == 3 || mode == 4){fscanf(fp1,"%lf (%lf,%lf,%lf)",&rad,&X,&Y,&Z);}
+    else if(mode == 2 || mode == 3 || mode == 4){fscanf(fp1,"%f (%f,%f,%f)",&rad,&X,&Y,&Z);}
     //平行移動
-    else if(mode == 5){fscanf(fp1,"(%lf,%lf,%lf)",&X,&Y,&Z);}
+    else if(mode == 5){fscanf(fp1,"(%f,%f,%f)\n",&Lx,&Ly,&Lz);}
     else if(mode == 0){exit(0);}
 
     char res = system("pwd");
 
-    switch(mode){
+    fscanf(fp2,"%d ",&n);
+
+    int i=0;
+        while(fscanf(fp2,"(%f,%f,%f)",&x[i],&y[i],&z[i]) != EOF){
+            printf("%f %f %f\n",x[i],y[i],z[i]);
+            i++;
+        }
+
+    for(i=0;i<n;i++){
+        continue;
+    }
+
+    exit(0);
+
+    /*switch(mode){
         case 1:
             //拡大・縮小変換
             call_nguplot(res);
-            HKmove();
+            HKmove(Lx,Ly,Lz,x,y,z);
             call_nguplot(res);
             big_small();
             call_nguplot(res);
@@ -86,13 +103,14 @@ int main(){
         default:
             printf("隠しコマンド発動！！！\n");
 
-    }
+    }*/
     return 0;
 }
 
+/*
 void HKmove(Lx,Ly,Lz,x,y,z){
     float T[4][4];
-    float result[3][1];
+    float result[4];
 
     for(int i=0;i<4;i++){
         for(int j=0;i<4;j++){
@@ -122,11 +140,17 @@ void HKmove(Lx,Ly,Lz,x,y,z){
         }
     }
 
-    result[0][0] = T[0][0] * T[1][1] * x + T[0][0] * T[1][2] * y + T[0][0] * T[1][3] * z; //これを脳筋で解く。図はGoodNotes参照
+    //result[0][0] = T[0][0] * T[1][1] * x + T[0][0] * T[1][2] * y + T[0][0] * T[1][3] * z; //これを脳筋で解く。図はGoodNotes参照
+
+    for(int i=0;i<4;i++){
+        result[i] = T[i][0]*x + T[i][1]*y + T[i][2]*z + T[1][3]*1;
+    }
+ 
 }
 
-void big_small(Sx,Sy,Sz){
+void big_small(Sx,Sy,Sz,x,y,z){
     float T[4][4];
+    float result[4];
 
     for(int i=0;i<4;i++){
         for(int j=0;i<4;j++){
@@ -146,10 +170,15 @@ void big_small(Sx,Sy,Sz){
             else{T[i][j] = 0;}
         }
     }
+
+    for(int i=0;i<4;i++){
+        result[i] = T[i][0]*x + T[i][1]*y + T[i][2]*z + T[1][3]*1;
+    }
 }
 
 void beyblade_X(rad,x,y,z){
     float T[4][4];
+    float result[4];
     rad *= 3.14 / 180;
 
     for(int i=0;i<4;i++){
@@ -177,11 +206,15 @@ void beyblade_X(rad,x,y,z){
         }
 
     }
+    for(int i=0;i<4;i++){
+        result[i] = T[i][0]*x + T[i][1]*y + T[i][2]*z + T[1][3]*1;
+    }
 
 }
 
 void beyblade_Y(rad,x,y,z){
     float T[4][4];
+    float result[4];
     rad *= 3.14 / 180;
 
     for(int i=0;i<4;i++){
@@ -209,11 +242,15 @@ void beyblade_Y(rad,x,y,z){
         }
 
     }
+    for(int i=0;i<4;i++){
+        result[i] = T[i][0]*x + T[i][1]*y + T[i][2]*z + T[1][3]*1;
+    }
 
 }
 
 void beyblade_Z(rad,x,y,z){
     float T[4][4];
+    float result[4];
     rad *= 3.14 / 180;
 
     for(int i=0;i<4;i++){
@@ -241,5 +278,8 @@ void beyblade_Z(rad,x,y,z){
         }
 
     }
+    for(int i=0;i<4;i++){
+        result[i] = T[i][0]*x + T[i][1]*y + T[i][2]*z + T[1][3]*1;
+    }
 
-}
+}*/
