@@ -44,10 +44,13 @@ int main(){
     printf("変の長さを入れんかいゴラ: ");
     scanf("%f",&length);
 
-    kass(OUTPUT,length,n);
     kuso(OUTPUT,length,n);
+    kass(OUTPUT,length,n);
     gomi(OUTPUT,length,n);
     unko(OUTPUT,length,n);
+
+    fclose(OUTPUT);
+    printf("\n完走した\n");
 }
 
 void kuso(FILE *out,float length,float n) {
@@ -153,9 +156,6 @@ void kuso(FILE *out,float length,float n) {
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
     }
-
-
-    fclose(out);
 }
 
 void kass(FILE *out,float length,float n) {
@@ -261,8 +261,6 @@ void kass(FILE *out,float length,float n) {
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
     }
-
-    fclose(out);
 }
 
 void gomi(FILE *out,float length,float n) {
@@ -368,9 +366,6 @@ void gomi(FILE *out,float length,float n) {
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
     }
-
-
-    fclose(out);
 }
 
 void unko(FILE *out,float length,float n) {
@@ -476,7 +471,4 @@ void unko(FILE *out,float length,float n) {
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
     }
-
-
-    fclose(out);
 }
