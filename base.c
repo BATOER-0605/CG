@@ -44,8 +44,8 @@ int main(){
     printf("変の長さを入れんかいゴラ: ");
     scanf("%f",&length);
 
-    kuso(OUTPUT,length,n);
     kass(OUTPUT,length,n);
+    kuso(OUTPUT,length,n);
     gomi(OUTPUT,length,n);
     unko(OUTPUT,length,n);
 }
@@ -278,92 +278,92 @@ void gomi(FILE *out,float length,float n) {
 
         //原点
         X = 0;
-        Y = 0;
-        Z = 0+length;
+        Y = 0+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //n00
         X = (length - 0)*t +0;
-        Y = 0;
-        Z = 0+length;
+        Y = 0+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //0n0
         X = 0;
-        Y = (length - 0)*t +0;
-        Z = 0+length;
+        Y = (length - 0)*t +0+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //00n
         X = 0;
-        Y = 0;
-        Z = (length -0)+t +0+length;
+        Y = 0+length;
+        Z = (length -0)+t +0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nn0
         X = length;
-        Y = (length - 0)*t +0;
-        Z = 0+length;
+        Y = (length - 0)*t +0+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nn0の原点に向かって行くver
         X = (0 - length)*t +length;
-        Y = length;
-        Z = 0+length;
+        Y = length+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //n0n
         X = length;
-        Y = 0;
-        Z = (length - 0)*t +0+length;
+        Y = 0+length;
+        Z = (length - 0)*t +0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nnn
         X = length;
-        Y = (length - 0)*t +0;
-        Z = length+length;
+        Y = (length - 0)*t +0+length;
+        Z = length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nnnの手前に引っ張ってくるver
         X = length;
-        Y = length;
-        Z = (0 - length)*t +length+length;
+        Y = length+length;
+        Z = (0 - length)*t +length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //n0nのX0に持ってくるver
         X = (0 - length)*t +length;
-        Y = 0;
-        Z = length+length;
+        Y = 0+length;
+        Z = length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //0nn
         X = 0;
-        Y = (length - 0)*t +0;
-        Z = length+length;
+        Y = (length - 0)*t +0+length;
+        Z = length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nnn
         X = (length - 0)*t +0;
-        Y = length;
-        Z = length+length;
+        Y = length+length;
+        Z = length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //0nnの手前に持ってくるver.
         X = 0;
-        Y = length;
-        Z = (0 - length)*t + length+length;
+        Y = length+length;
+        Z = (0 - length)*t + length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
@@ -386,92 +386,92 @@ void unko(FILE *out,float length,float n) {
 
         //原点
         X = 0+length;
-        Y = 0;
-        Z = 0+length;
+        Y = 0+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //n00
         X = (length - 0)*t +0+length;
-        Y = 0;
-        Z = 0+length;
+        Y = 0+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //0n0
         X = 0+length;
-        Y = (length - 0)*t +0;
-        Z = 0+length;
+        Y = (length - 0)*t +0+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //00n
         X = 0+length;
-        Y = 0;
-        Z = (length -0)+t +0+length;
+        Y = 0+length;
+        Z = (length -0)+t +0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nn0
         X = length+length;
-        Y = (length - 0)*t +0;
-        Z = 0+length;
+        Y = (length - 0)*t +0+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nn0の原点に向かって行くver
         X = (0 - length)*t +length+length;
-        Y = length;
-        Z = 0+length;
+        Y = length+length;
+        Z = 0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //n0n
         X = length+length;
-        Y = 0;
-        Z = (length - 0)*t +0+length;
+        Y = 0+length;
+        Z = (length - 0)*t +0;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nnn
         X = length+length;
-        Y = (length - 0)*t +0;
-        Z = length+length;
+        Y = (length - 0)*t +0+length;
+        Z = length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nnnの手前に引っ張ってくるver
         X = length+length;
-        Y = length;
-        Z = (0 - length)*t +length+length;
+        Y = length+length;
+        Z = (0 - length)*t +length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //n0nのX0に持ってくるver
         X = (0 - length)*t +length+length;
-        Y = 0;
-        Z = length+length;
+        Y = 0+length;
+        Z = length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //0nn
         X = 0+length;
-        Y = (length - 0)*t +0;
-        Z = length+length;
+        Y = (length - 0)*t +0+length;
+        Z = length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //nnn
         X = (length - 0)*t +0+length;
-        Y = length;
-        Z = length+length;
+        Y = length+length;
+        Z = length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
         //0nnの手前に持ってくるver.
         X = 0+length;
-        Y = length;
-        Z = (0 - length)*t + length+length;
+        Y = length+length;
+        Z = (0 - length)*t + length;
         printf("%f,%f,%f\n", X, Y,Z);
         fprintf(out, "%f,%f,%f\n", X,Y,Z);
 
